@@ -45,6 +45,12 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.0.5'
 
     implementation 'com.github.mjn1369:prettydialog:1.0.4'
+    compile "androidx.core:core-ktx:+"
+    compile "androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0-rc01"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 
+}
+repositories {
+    mavenCentral()
 }
