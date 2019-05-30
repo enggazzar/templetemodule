@@ -19,8 +19,20 @@ class ActAdapter : AppCompatActivity(), ImplementAdapter {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_act_adapter)
+
+        intialize();
+
+
+    }
+
+    fun intialize(){
         addAnimals()
-        adapter = initRec(rv as RecyclerView, R.layout.item_animal, animals, this)
+//        adapter = initRec(rv as RecyclerView, R.layout.item_animal, animals, this)
+        adapter = initRec(customview.listview , R.layout.item_animal, animals, this)
+
+        customview.btnRetry.setOnClickListener{
+            customview.showerror(false)
+        }
     }
 
     fun addAnimals() {
@@ -34,20 +46,40 @@ class ActAdapter : AppCompatActivity(), ImplementAdapter {
         animals.add("lizard")
         animals.add("hamster")
         animals.add("bear")
+        animals.add("hamster")
+        animals.add("hamster")
+        animals.add("hamster")
+        animals.add("hamster")
+
 
 
     }
 
     override fun loadMore() {
+        customview.showprogress(true)
 
-        if (count < 3) {
-            count++
-            Handler().postDelayed({
-                val animals: ArrayList<Any> = ArrayList()
-                animals.add("lion")
-                animals.add("tiger")
-                adapter?.addMore(animals)
-            }, 2000)
+//        if (count < 3) {
+//            count++
+        Handler().postDelayed({
+            val animals: ArrayList<Any> = ArrayList()
+            animals.add("lion")
+            animals.add("tiger")
+            animals.add("tiger")
+            animals.add("tiger")
+            animals.add("tiger")
+            animals.add("tiger")
+            animals.add("tiger")
+            animals.add("tiger")
+
+            adapter?.addMore(animals)
+            customview.showprogress(false)
+
+
+        }, 2000)
+//        }
+
+        if (animals.size>50){
+            customview.showerror(true)
         }
 
 
@@ -57,7 +89,7 @@ class ActAdapter : AppCompatActivity(), ImplementAdapter {
         with(holder){
             tvAnimal.text=data.toString()
             tvAnimal.setOnClickListener {
-                 startActivity(Intent(this@ActAdapter,ActSecondAdapter::class.java))
+                startActivity(Intent(this@ActAdapter,ActSecondAdapter::class.java))
             }
         }
 
