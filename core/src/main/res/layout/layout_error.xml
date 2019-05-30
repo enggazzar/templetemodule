@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/llError"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="@dimen/_10sdp"
+              android:background="@android:color/white"
+              android:gravity="center"
+              android:orientation="vertical">
+
+  <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignParentTop="true"
+          android:layout_marginTop="0dp"
+          android:orientation="vertical"
+          android:layout_marginStart="@dimen/_10sdp"
+          android:layout_marginEnd="@dimen/_10sdp"
+          tools:ignore="UselessParent">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            tools:ignore="UseCompoundDrawables,UselessParent">
+
+      <TextView
+              android:id="@+id/tvError"
+              android:layout_width="0dp"
+              android:layout_weight="1"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="@dimen/_3sdp"
+              android:layout_marginEnd="@dimen/_3sdp"
+              android:text="تاكد من اتصالك بالانترنت واعد المحاولة مرةاخرى "
+              android:scrollbars="vertical"
+              android:padding="@dimen/_5sdp"
+              android:singleLine="false"
+              android:textColor="@color/colorBlack"
+              android:textAlignment="center"
+              android:textSize="@dimen/_13sdp"
+              tools:ignore="Autofill,InefficientWeight,LabelFor,RtlCompat,TextFields" />
+
+      <ImageView
+              android:layout_width="@dimen/_35sdp"
+              android:layout_height="@dimen/_35sdp"
+              android:src="@drawable/ic_portable_wifi_off_black_24dp"
+              tools:ignore="ContentDescription" />
+
+
+    </LinearLayout>
+
+    <Button
+            android:id="@+id/btnRetry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/bigcorners_solid_light_green"
+            android:text="اعد المحاولة"
+            android:textColor="@color/colorWhite"
+            tools:ignore="HardcodedText,RtlCompat" />
+
+
+  </LinearLayout>
+</LinearLayout>

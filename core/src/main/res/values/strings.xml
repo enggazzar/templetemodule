@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Core</string>
+    <string name="title_activity_main" translatable="false">MainActivity</string>
+    <string name="forget_pwd_enter_your_email">إدخل البريد الإكترونى</string>
+    <string name="ok">موافق</string>
+    <string name="cancel">إلغاء</string>
+</resources>
