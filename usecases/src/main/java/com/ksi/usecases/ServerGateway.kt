@@ -22,6 +22,9 @@ fun determineCall(map: HashMap<String, String>): Single<*> {
 }
 
 
+
+
+
 interface ProjectApis {
     @GET("1")
     fun requestCities(
