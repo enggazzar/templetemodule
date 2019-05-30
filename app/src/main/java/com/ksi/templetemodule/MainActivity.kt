@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer
 import com.ksi.core.base.BaseAct
 import com.ksi.entities.ModelTest
 import com.ksi.usecase.getBaseUrlUseCase
-import com.ksi.usecases.enumfiles.EnumShared
+import com.ksi.usecases.enumfiles.enumShared
 import com.ksi.usecases.prefadd
 import kotlinx.android.synthetic.main.layout_error.*
 
@@ -33,7 +33,7 @@ class MainActivity : BaseAct() {
 //            print(it.title + it.userId)
         } else if (it is Throwable) {
 
-            prefadd(EnumShared.shLanguage.name, "en")
+            prefadd(enumShared.shLanguage.name, "en")
 
            // resetApi()
             showError(R.drawable.abc_ic_ab_back_material, null, it, { callAgain() })

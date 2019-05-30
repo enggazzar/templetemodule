@@ -1,11 +1,13 @@
 package com.ksi.core
 
+import android.content.DialogInterface
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import libs.mjn.prettydialog.PrettyDialog
 
-fun AppCompatActivity.initDialogForgetPwd(onOkClicked: () -> Unit) {
+fun AppCompatActivity.dialogForgetPwd(onOkClicked: () -> Unit) {
     //==========================================//
     val alert = android.app.AlertDialog.Builder(this)
     val edittext = android.widget.EditText(this)
@@ -30,7 +32,7 @@ fun AppCompatActivity.initDialogForgetPwd(onOkClicked: () -> Unit) {
     alert.show()
 }
 
-fun AppCompatActivity.showDialogInfo(msg: String? = null, @ColorRes color: Int, @DrawableRes drawable: Int, onOkClicked: () -> Unit) {
+fun AppCompatActivity.dialogInfo(msg: String? = null, @ColorRes color: Int, @DrawableRes drawable: Int, onOkClicked: () -> Unit) {
 
     val dialog = PrettyDialog(this)
     dialog.setTitle(getString(R.string.app_name))
@@ -48,4 +50,25 @@ fun AppCompatActivity.showDialogInfo(msg: String? = null, @ColorRes color: Int, 
         }
         .show()
 
+}
+fun AppCompatActivity.dialogExitApp() {
+
+    val alertDialog = AlertDialog.Builder(this)
+        //set icon
+        .setIcon(android.R.drawable.ic_dialog_alert)
+        //set title
+        .setTitle("Are you sure to Exit")
+        //set message
+        .setMessage("If yes then application will close")
+        //set positive button
+        .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, i ->
+
+            finish()
+        })
+        //set negative button
+        .setNegativeButton("No", DialogInterface.OnClickListener { dialogInterface, i ->
+            //set what should happen when negative button is clicked
+
+        })
+        .show()
 }

@@ -2,7 +2,7 @@ package com.ksi.usecase
 
 
 import android.content.Context
-import com.ksi.usecases.enumfiles.EnumShared
+import com.ksi.usecases.enumfiles.enumShared
 import com.ksi.usecases.prefGetString
 import java.util.*
 
@@ -17,7 +17,7 @@ var Authorization = "Authorization"
 fun getBaseUrlUseCase(): String {
 
     val cnt = applicationLiveData.getApplication()
-    val lang = cnt.prefGetString(EnumShared.shLanguage.name, "ar")
+    val lang = cnt.prefGetString(enumShared.shLanguage.name, "ar")
     val uri: String
     if (lang != "ar") {
         uri = urlAr + lang + "/"
@@ -27,7 +27,7 @@ fun getBaseUrlUseCase(): String {
 }
 fun isLanguageArabic():Boolean{
     val cnt = applicationLiveData.getApplication()
-    val lang = cnt.prefGetString(EnumShared.shLanguage.name, "ar")
+    val lang = cnt.prefGetString(enumShared.shLanguage.name, "ar")
     if(lang.equals("en")){
        return false
     }else{

@@ -7,7 +7,7 @@ import com.ksi.usecase.retrofit.getCall
 
 class CallViewModel() : ViewModel() {
 
-
+    //val responseLiveData = MutableLiveData <HashMap<String, Any>>()
     val responseLiveData = MutableLiveData<Any>()
     val showProgress = MutableLiveData<Boolean>()
 

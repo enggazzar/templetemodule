@@ -1,5 +1,5 @@
 package com.ksi.usecases.enumfiles
 
-enum class EnumShared {
+enum class enumShared {
     shToken,shFirebase,shLanguage
 }
