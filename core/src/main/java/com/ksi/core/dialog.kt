@@ -12,10 +12,7 @@ fun AppCompatActivity.dialogForgetPwd(onOkClicked: () -> Unit) {
     val alert = android.app.AlertDialog.Builder(this)
     val edittext = android.widget.EditText(this)
     alert.setMessage(getString(R.string.forget_pwd_enter_your_email))
-    //  alert.setTitle("Enter Your Title");
-
     alert.setView(edittext)
-
     alert.setPositiveButton(getString(R.string.ok)) { dialog, whichButton ->
         val email = edittext.text.toString()
         //==================================================//
@@ -24,15 +21,18 @@ fun AppCompatActivity.dialogForgetPwd(onOkClicked: () -> Unit) {
         }
         //===================================================//
     }
-
     alert.setNegativeButton(getString(R.string.cancel)) { dialog, whichButton ->
-        // what ever you want to do with No option.
     }
 
     alert.show()
 }
 
-fun AppCompatActivity.dialogInfo(msg: String? = null, @ColorRes color: Int, @DrawableRes drawable: Int, onOkClicked: () -> Unit) {
+fun AppCompatActivity.dialogInfo(
+    msg: String? = null, @ColorRes color: Int,
+    @DrawableRes drawable: Int,
+    onOkClicked: () -> Unit
+)
+{
 
     val dialog = PrettyDialog(this)
     dialog.setTitle(getString(R.string.app_name))
@@ -43,7 +43,8 @@ fun AppCompatActivity.dialogInfo(msg: String? = null, @ColorRes color: Int, @Dra
             getString(R.string.ok), // button text
             R.color.pdlg_color_white, // button text color
             R.color.pdlg_color_green // button background color
-        ) {
+        )
+        {
 
             dialog.dismiss()
             onOkClicked()
@@ -51,23 +52,45 @@ fun AppCompatActivity.dialogInfo(msg: String? = null, @ColorRes color: Int, @Dra
         .show()
 
 }
+
 fun AppCompatActivity.dialogExitApp() {
 
     val alertDialog = AlertDialog.Builder(this)
         //set icon
         .setIcon(android.R.drawable.ic_dialog_alert)
         //set title
-        .setTitle("Are you sure to Exit")
+        .setTitle(getString(R.string.confirm_exit_app_title))
         //set message
-        .setMessage("If yes then application will close")
+        .setMessage(getString(R.string.confirm_exit_app_msg))
         //set positive button
-        .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, i ->
+        .setPositiveButton(getString(R.string.ok), DialogInterface.OnClickListener { dialog, i ->
 
             finish()
         })
         //set negative button
-        .setNegativeButton("No", DialogInterface.OnClickListener { dialogInterface, i ->
-            //set what should happen when negative button is clicked
+        .setNegativeButton(getString(R.string.cancel), DialogInterface.OnClickListener { dialogInterface, i ->
+
+
+        })
+        .show()
+}
+
+fun AppCompatActivity.dialogOkCansel(title: String, message: String, icon: Int, okPressed: () -> Unit) {
+
+    val alertDialog = AlertDialog.Builder(this)
+        //set icon
+        .setIcon(icon)
+        //set title
+        .setTitle(title)
+        //set message
+        .setMessage(message)
+        //set positive button
+        .setPositiveButton(getString(R.string.ok), DialogInterface.OnClickListener { dialog, i ->
+            okPressed()
+        })
+        //set negative button
+        .setNegativeButton(getString(R.string.cancel), DialogInterface.OnClickListener { dialogInterface, i ->
+
 
         })
         .show()

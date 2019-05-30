@@ -12,7 +12,7 @@ private const val APP_ID_VALUE = "cc8bf0ef9fefd3794a362f69e9b0721d"
 
 //todo
 // 2- adapter load more
-// 3- dialog ok cancel-list -forget paswword- belong to project
+// 3--list belong to project
 
 
 fun determineCall(map: HashMap<String, String>): Single<*> {
