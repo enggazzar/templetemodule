@@ -4,8 +4,8 @@
 
     <application>
         <activity
-                android:name=".templetemvvm.MainActivity"
-                android:label="@string/title_activity_main"
+                android:name=".base.AppWebView"
+                android:label="@string/title_activity_app_web_view"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>

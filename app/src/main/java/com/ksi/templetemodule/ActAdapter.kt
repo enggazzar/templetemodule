@@ -1,16 +1,17 @@
 package com.ksi.templetemodule
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import androidx.appcompat.app.AppCompatActivity
+import android.util.Log
+import androidx.lifecycle.Observer
+import com.ksi.core.base.BaseAct
 import com.ksi.core.base.SimpleAdapter
 import com.ksi.core.base.initRec
 import com.ksi.core.interfaces.ImplementAdapter
 import kotlinx.android.synthetic.main.activity_act_adapter.*
 import kotlinx.android.synthetic.main.item_animal.*
 
-class ActAdapter : AppCompatActivity(), ImplementAdapter {
+class ActAdapter : BaseAct(), ImplementAdapter {
     private val animals: ArrayList<Any> = ArrayList()
     var adapter: SimpleAdapter? = null
     var count: Int = 0
@@ -19,9 +20,14 @@ class ActAdapter : AppCompatActivity(), ImplementAdapter {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_act_adapter)
 
-        intialize();
+        intialize()
+        viewModel.responseLiveData.observe(this,
+            Observer { populoateModel(it) })
 
+    }
 
+    private fun populoateModel(it: Any?) {
+        Log.e("have value ", "kkjkdl")
     }
 
     fun intialize() {
@@ -30,7 +36,7 @@ class ActAdapter : AppCompatActivity(), ImplementAdapter {
         adapter = initRec(customview.listview, R.layout.item_animal, animals, this)
 
         customview.btnRetry.setOnClickListener {
-            customview.showerror(false)
+            customview.showError(false)
         }
     }
 
@@ -51,44 +57,50 @@ class ActAdapter : AppCompatActivity(), ImplementAdapter {
         animals.add("hamster")
 
 
-
     }
 
     override fun loadMore() {
-        customview.showprogress(true)
+        customview.showProgress(true)
 
-//        if (count < 3) {
-//            count++
-        Handler().postDelayed({
-            val animals: ArrayList<Any> = ArrayList()
-            animals.add("lion")
-            animals.add("tiger")
-            animals.add("tiger")
-            animals.add("tiger")
-            animals.add("tiger")
-            animals.add("tiger")
-            animals.add("tiger")
-            animals.add("tiger")
+        if (count < 3) {
+         count++
+            Handler().postDelayed({
+                val animals: ArrayList<Any> = ArrayList()
+                animals.add("lion")
+                animals.add("tiger")
+                animals.add("tiger")
+                animals.add("tiger")
+                animals.add("tiger")
+                animals.add("tiger")
+                animals.add("tiger")
+                animals.add("tiger")
 
-            adapter?.addMore(animals)
-            customview.showprogress(false)
+                adapter?.addMore(animals)
+                customview.showProgress(false)
 
 
-        }, 2000)
-//        }
+            }, 2000)
+        }
 
-        if (animals.size > 50) {
-            customview.showerror(true)
+        if (animals.size > 2) {
+
+          //  customview.showError(true)
         }
 
 
     }
+  fun  showRecErrore(){
+      Log.e("clicked","true")
+      customview.showError(true)
+    }
 
-    override fun setContentViewHolder(holder: SimpleAdapter.ViewHolder, data: Any,position:Int) {
-        with(holder){
-            tvAnimal.text=data.toString()
+    override fun setContentViewHolder(holder: SimpleAdapter.ViewHolder, data: Any, position: Int) {
+        with(holder) {
+            tvAnimal.text = data.toString()
             tvAnimal.setOnClickListener {
-                startActivity(Intent(this@ActAdapter, ActSecondAdapter::class.java))
+                // startActivity(Intent(this@ActAdapter, ActSecondAdapter::class.java))
+                // customview.showerror(true)
+                showRecErrore()
             }
         }
 

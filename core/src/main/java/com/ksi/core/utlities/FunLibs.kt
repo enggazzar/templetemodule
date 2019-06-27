@@ -1,4 +1,4 @@
-package com.ksi.core
+package com.ksi.core.utlities
 
 import android.Manifest
 import android.net.Uri
@@ -62,7 +62,7 @@ fun AppCompatActivity.setGallaryResultInActivity(uri: Uri) {
 
 fun AppCompatActivity.CompressImage(imageuri: Uri): MultipartBody.Part {
     val compressedImageFile: File = Compressor(this).compressToFile(File(imageuri.getPath()))
-    return prepareFilePart("avatar",compressedImageFile)
+    return prepareFilePart("avatar", compressedImageFile)
 }
 
 

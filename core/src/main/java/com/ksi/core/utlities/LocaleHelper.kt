@@ -1,4 +1,4 @@
-package  com.ksi.core
+package  com.ksi.core.utlities
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -29,7 +29,7 @@ class LocaleHelper private constructor() {
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     fun setLocale(language: String?): Context {
-      saveSelectedLanguage(language)
+        saveSelectedLanguage(language)
       return updateResources(language)
     }
 

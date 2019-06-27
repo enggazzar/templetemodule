@@ -13,8 +13,8 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.ksi.core.LocaleHelper
-import com.ksi.core.LocaleHelper.Companion.setLocale
+import com.ksi.core.utlities.LocaleHelper
+import com.ksi.core.utlities.LocaleHelper.Companion.setLocale
 import com.ksi.core.R
 import kotlinx.android.synthetic.main.activity_base.*
 import kotlinx.android.synthetic.main.layout_error.*

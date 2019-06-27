@@ -13,7 +13,7 @@
             android:background="@android:color/white"
             tools:ignore="RtlSymmetry"/>
 
-    <com.ksi.core.customview.MyCustomView
+    <com.ksi.core.customview.RecyclerViewCustomView
             android:id="@+id/customview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

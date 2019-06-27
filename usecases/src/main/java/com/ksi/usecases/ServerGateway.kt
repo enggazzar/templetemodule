@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import java.util.*
 
 
-private const val SERVER_BASE_URL = "https://jsonplaceholder.typicode.com/todos/"
+const val SERVER_BASE_URL = "https://jsonplaceholder.typicode.com/todos/"
 private const val APP_ID_KEY = "appid"
 private const val APP_ID_VALUE = "cc8bf0ef9fefd3794a362f69e9b0721d"
 

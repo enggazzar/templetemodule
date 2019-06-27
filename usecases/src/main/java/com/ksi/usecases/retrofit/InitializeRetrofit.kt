@@ -14,14 +14,14 @@ import java.util.concurrent.TimeUnit
 
 //lateinit var retrofit: Retrofit
 
-private val retrofit: Retrofit by lazy {
+/*private val retrofit: Retrofit by lazy {
 
     Retrofit.Builder()
-            .baseUrl(getBaseUrlUseCase())
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(httpClient)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .build()
+        .baseUrl(getBaseUrlUseCase())
+        .addConverterFactory(GsonConverterFactory.create())
+        .client(httpClient)
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .build()
 }
 
 private val retrofitEn: Retrofit by lazy {
@@ -32,7 +32,7 @@ private val retrofitEn: Retrofit by lazy {
         .client(httpClient)
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
-}
+}*/
 
 /*fun resetRetrofit(){
     Log.e("lang",getBaseUrlUseCase())
@@ -43,19 +43,18 @@ private val retrofitEn: Retrofit by lazy {
        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
        .build()
 }*/
- object ApiService{
+object ApiService {
     // init Retrofit base server instance
     val ServiceAr by lazy { ApiService.invoke(urlAr) }
     val ServiceEn by lazy { ApiService.invoke(urlEn) }
     //val stackClient by lazy { RestClient.invoke("") }
 
 
-
     operator fun invoke(baseUrl: String): ProjectApis {
 
 
         return Retrofit.Builder()
-            .baseUrl(getBaseUrlUseCase())
+            .baseUrl(SERVER_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(httpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -63,43 +62,50 @@ private val retrofitEn: Retrofit by lazy {
             .create(ProjectApis::class.java)
     }
 }
+
 val httpClient by lazy {
+
+   // val cacheSize: Long = 10 * 1024 * 1024 // 10 MB
+  //  val cache = Cache(applicationLiveData.value?.cacheDir, cacheSize)
     OkHttpClient.Builder()
-            .addInterceptor(provideHeaderInterceptort())
-            .addInterceptor(provideHttpLoggingInterceptor())
-            .readTimeout(6, TimeUnit.MINUTES)
-            .connectTimeout(5, TimeUnit.MINUTES)
-            .build()
+     //   .cache(cache)
+
+        .addInterceptor(provideHeaderInterceptort())
+        .addInterceptor(provideHttpLoggingInterceptor())
+        .readTimeout(6, TimeUnit.MINUTES)
+        .connectTimeout(5, TimeUnit.MINUTES)
+        .build()
 }
 
 
-fun  getApiServiceByLang(): ProjectApis  {
-   if(isLanguageArabic()){
-     return ApiService.ServiceAr
-   }else{
-       return ApiService.ServiceEn
+fun getApiServiceByLang(): ProjectApis {
+    if (isLanguageArabic()) {
+        return ApiService.ServiceAr
+    } else {
+        return ApiService.ServiceEn
 
-   }
+    }
 }
 
 fun getCall(resp: MutableLiveData<Any>, showProgress: MutableLiveData<Boolean>, map: HashMap<String, String>) {
- //   resetRetrofit()
+    //   resetRetrofit()
 
     showProgress.postValue(true)
     var call: Single<*> = determineCall(map)
     call.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                var map=HashMap<String,Any>()
-                map.put(enumApi.resp.name,it)
-                resp.postValue(it)
-                showProgress.postValue(false)
-            }, {
-                resp.postValue(it)
-                showProgress.postValue(false)
-            }
-            )
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe({
+            var map = HashMap<String, Any>()
+            map.put(enumApi.resp.name, it)
+            resp.postValue(it)
+            showProgress.postValue(false)
+        }, {
+            resp.postValue(it)
+            showProgress.postValue(false)
+        }
+        )
 }
+
 fun getCallwitFalgs(
     resp: MutableLiveData<HashMap<String, Any>>,
     showProgress: MutableLiveData<Boolean>,

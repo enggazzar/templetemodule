@@ -15,7 +15,7 @@ import com.wang.avi.AVLoadingIndicatorView
  * Created by sobhy.
  */
 
-class MyCustomView(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
+class RecyclerViewCustomView(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
 
     var listview: RecyclerView
     var progress: AVLoadingIndicatorView
@@ -36,7 +36,7 @@ class MyCustomView(context: Context, attrs: AttributeSet) : LinearLayout(context
 
     }
 
-    fun showprogress(show: Boolean) {
+    fun showProgress(show: Boolean) {
         if (show) {
             progress.visibility = View.VISIBLE
         } else {
@@ -45,7 +45,7 @@ class MyCustomView(context: Context, attrs: AttributeSet) : LinearLayout(context
         }
     }
 
-    fun showerror(show: Boolean) {
+    fun showError(show: Boolean) {
         if (show) {
             retry_layout.visibility = View.VISIBLE
         } else {

@@ -1,5 +1,6 @@
 package com.ksi.templetemodule
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -23,9 +24,11 @@ class MainActivity : BaseAct() {
 
         viewModel.responseLiveData.observe(this,
             Observer { populoateModel(it) })
+
     }
 
     private fun populoateModel(it: Any?) {
+
         llError.visibility = View.GONE
         if (it is ModelTest) {
             Log.e("classname", "TestViewModelAct")
@@ -35,13 +38,14 @@ class MainActivity : BaseAct() {
 
             prefadd(enumShared.shLanguage.name, "en")
 
-           // resetApi()
+            // resetApi()
             showError(R.drawable.abc_ic_ab_back_material, null, it, { callAgain() })
         }
 
     }
 
     private fun callAgain() {
-        viewModel.call()
+        // viewModel.call()
+        startActivity(Intent(this, ActAdapter::class.java))
     }
 }

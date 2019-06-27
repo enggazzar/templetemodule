@@ -1,10 +1,12 @@
-package com.ksi.core
+package com.ksi.core.utlities
 
 import android.content.DialogInterface
+import android.os.Build
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.ksi.core.R
 import libs.mjn.prettydialog.PrettyDialog
 
 fun AppCompatActivity.dialogForgetPwd(onOkClicked: () -> Unit) {
@@ -31,8 +33,7 @@ fun AppCompatActivity.dialogInfo(
     msg: String? = null, @ColorRes color: Int,
     @DrawableRes drawable: Int,
     onOkClicked: () -> Unit
-)
-{
+) {
 
     val dialog = PrettyDialog(this)
     dialog.setTitle(getString(R.string.app_name))
@@ -65,7 +66,18 @@ fun AppCompatActivity.dialogExitApp() {
         //set positive button
         .setPositiveButton(getString(R.string.ok), DialogInterface.OnClickListener { dialog, i ->
 
-            finish()
+            try {
+                finishAffinity()
+                if (Build.VERSION.SDK_INT >= 21) {
+                    finishAndRemoveTask()
+                }
+
+                val pid = android.os.Process.myPid()
+                android.os.Process.killProcess(pid)
+            } catch (e: Exception) {
+
+            }
+
         })
         //set negative button
         .setNegativeButton(getString(R.string.cancel), DialogInterface.OnClickListener { dialogInterface, i ->
@@ -93,5 +105,22 @@ fun AppCompatActivity.dialogOkCansel(title: String, message: String, icon: Int, 
 
 
         })
+        .show()
+}
+fun AppCompatActivity.dialogOk(title: String, message: String, icon: Int, okPressed: () -> Unit) {
+
+    val alertDialog = AlertDialog.Builder(this)
+        //set icon
+        .setIcon(icon)
+        //set title
+        .setTitle(title)
+        //set message
+        .setMessage(message)
+        //set positive button
+        .setPositiveButton(getString(R.string.ok), DialogInterface.OnClickListener { dialog, i ->
+            okPressed()
+        })
+        //set negative button
+
         .show()
 }
