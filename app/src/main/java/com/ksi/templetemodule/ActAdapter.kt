@@ -3,6 +3,7 @@ package com.ksi.templetemodule
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.Observer
 import com.ksi.core.base.BaseAct
 import com.ksi.core.base.SimpleAdapter
@@ -10,6 +11,7 @@ import com.ksi.core.base.initRec
 import com.ksi.core.interfaces.ImplementAdapter
 import kotlinx.android.synthetic.main.activity_act_adapter.*
 import kotlinx.android.synthetic.main.item_animal.*
+import kotlinx.android.synthetic.main.layout_error.*
 
 class ActAdapter : BaseAct(), ImplementAdapter {
     private val animals: ArrayList<Any> = ArrayList()
@@ -83,7 +85,7 @@ class ActAdapter : BaseAct(), ImplementAdapter {
         }
 
         if (animals.size > 2) {
-
+           llError.visibility = View.GONE
           //  customview.showError(true)
         }
 

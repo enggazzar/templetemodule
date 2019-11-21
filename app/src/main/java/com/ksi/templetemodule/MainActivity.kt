@@ -3,14 +3,12 @@ package com.ksi.templetemodule
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.lifecycle.Observer
 import com.ksi.core.base.BaseAct
 import com.ksi.entities.ModelTest
 import com.ksi.usecase.getBaseUrlUseCase
 import com.ksi.usecases.enumfiles.enumShared
 import com.ksi.usecases.prefadd
-import kotlinx.android.synthetic.main.layout_error.*
 
 class MainActivity : BaseAct() {
 
@@ -29,7 +27,7 @@ class MainActivity : BaseAct() {
 
     private fun populoateModel(it: Any?) {
 
-        llError.visibility = View.GONE
+       // llError.visibility = View.GONE
         if (it is ModelTest) {
             Log.e("classname", "TestViewModelAct")
 //            tvTest.text = it.title + it.userId
